@@ -25,7 +25,7 @@
                          array('label'=>Yii::t('backend', 'Posts'), 'url'=>array('/posts/admin')),
                          array('label'=>Yii::t('backend', 'Comments'), 'url'=>array('/comments/admin')),
                          array('label'=>Yii::t('backend', 'Links'), 'url'=>array('/links/admin')),
-                         array('label'=>Yii::t('backend', 'Attachments'), 'url'=>array('/attachment/admin')),	
+                         array('label'=>Yii::t('backend', 'Attachments'), 'url'=>array('/attachments/admin')),	
                      ),
                 ),
                 array(
@@ -51,6 +51,7 @@
 		Copyright &copy; <?php echo date('Y'); ?> by WindsDeng.
 		All Rights Reserved.
 		<?php echo Yii::powered(); ?>
+        QQ交流群:200505420
 	</div><!-- footer -->
 
 </div><!-- page -->

@@ -18,46 +18,42 @@
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
-<body>
+<body id="body">
 
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-	</div><!-- header -->
+        <div id="site-description" class="right"><h2>Wdblog is an Yii-powered open source blog project</h2></div>
+        <div id="logo"><h1><?php echo CHtml::encode(Yii::app()->name); ?></h1></div>
+        <div class="clear"></div>
+    </div><!-- header -->
     <div id="banner">
         <?php $this->widget('bootstrap.widgets.TbCarousel', array(
             'displayPrevAndNext'=>false,
             'items'=>array(
-                array('image'=>Yii::app()->request->baseUrl.'/attachments/sunset.jpg','imageOptions'=>array('style'=>'height:200px;width:100%'), 'label'=>'Welcome to Wdblog', 'caption'=>'Welcome to windsdeng'),
+                array('image'=>Yii::app()->request->baseUrl.'/attachments/sunset.jpg','imageOptions'=>array('style'=>'height:200px;width:100%'), 'label'=>'Welcome to Wdblog', 'caption'=>'Wdblog is an Yii-powered open source blog project， it was released under the terms of the BSD License.'),
             ),
         )); ?>
     </div>
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
+				array('label'=>Yii::t('frontend', 'Home'), 'url'=>array('/posts/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
 
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by WindsDeng.<br/>
-		All Rights Reserved.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> by WindsDeng.
+		All Rights Reserved.
 		<?php echo Yii::powered(); ?>
+        QQ交流群:200505420
 	</div><!-- footer -->
 
 </div><!-- page -->

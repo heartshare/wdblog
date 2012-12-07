@@ -22,7 +22,7 @@
 		Copyright &copy; <?php echo date('Y'); ?> by WindsDeng.
 		All Rights Reserved.
 		Powered by <?php echo Yii::powered(); ?>
-		QQ群:200505420
+		QQ交流群:200505420
         <script type="text/javascript" src="http://js.tongji.linezing.com/2975299/tongji.js"></script>
 	</div><!-- footer -->
 

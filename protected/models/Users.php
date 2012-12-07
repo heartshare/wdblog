@@ -78,7 +78,7 @@ class Users extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'username' => 'Username',
+			'username' => Yii::t('frontend', 'Username'),
 			'nickname' => 'Nickname',
 			'password' => 'Password',
 			'avatar' => 'Avatar',

@@ -55,6 +55,7 @@ return array(
 		),	
 		'user'=>array(
 			// enable cookie-based authentication
+            'loginUrl'=>array('users/login'),
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format

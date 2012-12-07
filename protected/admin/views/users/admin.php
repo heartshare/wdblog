@@ -45,19 +45,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'username',
 		'nickname',
-		'password',
 		'avatar',
-		'salt',
-		/*
 		'email',
 		'status',
 		'role',
-		'user_url',
-		'other_details',
 		'counts',
 		'created',
 		'updated',
-		*/
+		
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),
