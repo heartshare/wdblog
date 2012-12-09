@@ -1,9 +1,7 @@
-<?php /* @var $this Controller */ ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
 
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
@@ -39,15 +37,14 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>Yii::t('frontend', 'Home'), 'url'=>array('/posts/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				array('label'=>Yii::t('frontend', 'About Me'), 'url'=>array('/site/page', 'view'=>'about')),
+				array('label'=>Yii::t('frontend', 'Contact Us'), 'url'=>array('/site/contact')),
 			),
 		)); ?>
 	</div><!-- mainmenu -->
-
+    
 	<?php echo $content; ?>
 
-	<div class="clear"></div>
 
 	<div id="footer">
 		Copyright &copy; <?php echo date('Y'); ?> by WindsDeng.

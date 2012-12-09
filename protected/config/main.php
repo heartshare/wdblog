@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My WindsDeng',
+	'name'=>'Hello WindsDeng',
     'defaultController'=>'posts',
    // 'theme'=>'classic',     //皮肤配置 default为默认或注释掉
     'language'=>'zh_cn',

@@ -19,7 +19,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'users_id',
+		'user_id',
 		'object_id',
 		'filename',
 		'oldfilename',

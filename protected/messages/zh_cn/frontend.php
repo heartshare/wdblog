@@ -19,26 +19,47 @@ return array (
     'Home' => '首页',
 
      //动作
-    'Login'=>'登录',
-    'Logout'=>'登出',
+    'Login' => '登录',
+    'Logout' => '登出',
+    'Manage' => '管理',
+    'Submit' => '提交',
+    'Save' => '保存',
+    'Create' => '创建',
+    'Update' => '更新',
+    'Delete' => '删除',
     
      //用户功能
     'User Menu' => '用户菜单',
 
      //用户
-    'Username'=>'用户名',
-    'Password'=>'密码',
-    'Nickname'=>'昵称',
-    'Avatar'=>'头像',
-    'Email'=>'邮箱',
-    'Role'=>'角色',
+    'Users' => '用户',
+    'Username' => '用户名',
+    'Password' => '密码',
+    'Nickname' => '昵称',
+    'Avatar' => '头像',
+    'Email' => '邮箱',
+    'Role' => '角色',
 
     //Posts
-    'Create New Post' => '新建博客',
-    'Manage Posts'    => '管理博客',
-    'Posts' => '博客',
+    'Create New Post' => '新建文章',
+    'Manage Posts'    => '管理文章',
+    'Posts' => '文章',
+    'Title' => '标题',
+    'Excerpt' => '摘要',
+    'Content' => '内容',
+    'Optimization' => '优化',
+    'Privacy' => '私隐',
+    'Slug' => '别名',
+    'Read Count' => '阅读数',
+    'Description' => '描述',
+    'Keywords' => '关键词',
+    //Comments
+    'Ping' => '评分',
+    'Comments' => '评论',
     
     //其它
+    'Contact Us' => '联系我们',
+    'About Me' => '关于我',
     'Remember me next time'=>'下次记住我',
     'Hint'=>'提示',
     'Status'=>'状态',

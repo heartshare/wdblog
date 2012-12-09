@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table '{{attachments}}':
  * @property string $id
- * @property string $users_id
+ * @property string $user_id
  * @property string $object_id
  * @property string $filename
  * @property string $oldfilename
@@ -43,15 +43,15 @@ class Attachments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('users_id, object_id', 'required'),
-			array('users_id, object_id', 'length', 'max'=>20),
+			array('user_id, object_id', 'required'),
+			array('user_id, object_id', 'length', 'max'=>20),
 			array('filename, oldfilename, filepath', 'length', 'max'=>255),
 			array('extension', 'length', 'max'=>32),
 			array('filesize', 'length', 'max'=>10),
 			array('created, updated', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, users_id, object_id, filename, oldfilename, extension, filesize, filepath, created, updated', 'safe', 'on'=>'search'),
+			array('id, user_id, object_id, filename, oldfilename, extension, filesize, filepath, created, updated', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,7 +73,7 @@ class Attachments extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'users_id' => 'Users',
+			'user_id' => 'Users',
 			'object_id' => 'Object',
 			'filename' => 'Filename',
 			'oldfilename' => 'Oldfilename',
@@ -97,7 +97,7 @@ class Attachments extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('users_id',$this->users_id,true);
+		$criteria->compare('user_id',$this->user_id,true);
 		$criteria->compare('object_id',$this->object_id,true);
 		$criteria->compare('filename',$this->filename,true);
 		$criteria->compare('oldfilename',$this->oldfilename,true);

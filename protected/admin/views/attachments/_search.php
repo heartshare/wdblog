@@ -5,7 +5,7 @@
 
 	<?php echo $form->textFieldRow($model,'id',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<?php echo $form->textFieldRow($model,'users_id',array('class'=>'span5','maxlength'=>20)); ?>
+	<?php echo $form->textFieldRow($model,'user_id',array('class'=>'span5','maxlength'=>20)); ?>
 
 	<?php echo $form->textFieldRow($model,'object_id',array('class'=>'span5','maxlength'=>20)); ?>
 

@@ -31,12 +31,8 @@ class PostsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','admin','delete'),
 				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -62,19 +58,25 @@ class PostsController extends Controller
 	public function actionCreate()
 	{
 		$model=new Posts;
-
+        $seoModel =new SeoForm;
+        
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
+		$this->performAjaxValidation($model);
+        
 		if(isset($_POST['Posts']))
 		{
 			$model->attributes=$_POST['Posts'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->save()){
+                //添加 keywords and description
+                Meta::addMeta($model->id, 'posts', '_seo_post_meta', $_POST['SeoForm']);
+                $this->redirect(array('view','id'=>$model->id));
+            }
+				
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+            'seoForm'=>$seoModel,
 		));
 	}
 
@@ -86,10 +88,13 @@ class PostsController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+        $seoModel =new SeoForm;
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
+		$this->performAjaxValidation($model);
+        
+        $meta = Meta::getMeta($id, 'posts', '_seo_post_meta');
+        $seoModel->keywords= $meta->keywords;
+        $seoModel->description= $meta->description;
 		if(isset($_POST['Posts']))
 		{
 			$model->attributes=$_POST['Posts'];
@@ -99,6 +104,7 @@ class PostsController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+            'seoForm'=>$seoModel,
 		));
 	}
 
@@ -127,7 +133,17 @@ class PostsController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Posts');
+        $criteria = new CDbCriteria();
+		$criteria->compare('post_status',3);
+		$criteria->order = 'created DESC';
+		
+		$dataProvider = new CActiveDataProvider('Posts',array(
+				'criteria'=>$criteria,
+				'pagination'=>array(
+						'pageSize'=>10,
+				),
+		));
+        
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

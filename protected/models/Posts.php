@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table '{{posts}}':
  * @property string $id
- * @property string $users_id
+ * @property string $user_id
  * @property string $title
  * @property string $excerpt
  * @property string $content
@@ -22,7 +22,7 @@
  * @property string $menu_order
  * @property string $slug
  * @property string $created
- * @property string $update
+ * @property string $updated
  */
 class Posts extends CActiveRecord
 {
@@ -52,16 +52,16 @@ class Posts extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('users_id, title, content, post_status, comment_status, ping_status, created, update', 'required'),
+			array('title, content, post_status, comment_status, ping_status', 'required'),
 			array('post_status, comment_status, ping_status', 'numerical', 'integerOnly'=>true),
-			array('users_id, read_count, parent_id', 'length', 'max'=>20),
+			array('user_id, read_count, parent_id', 'length', 'max'=>20),
 			array('title, slug', 'length', 'max'=>255),
 			array('password, post_type', 'length', 'max'=>32),
 			array('to_ping, pinged, menu_order', 'length', 'max'=>11),
 			array('excerpt, content_filtered', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, users_id, title, excerpt, content, content_filtered, post_status, comment_status, ping_status, password, read_count, post_type, to_ping, pinged, parent_id, menu_order, slug, created, update', 'safe', 'on'=>'search'),
+			array('id, user_id, title, excerpt, content, content_filtered, post_status, comment_status, ping_status, password, read_count, post_type, to_ping, pinged, parent_id, menu_order, slug, created, updated', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,6 +73,7 @@ class Posts extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'author' => array(self::BELONGS_TO, 'Users', 'user_id'),
 		);
 	}
 
@@ -83,28 +84,76 @@ class Posts extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'users_id' => 'Users',
-			'title' => 'Title',
-			'excerpt' => 'Excerpt',
-			'content' => 'Content',
+			'user_id' => 'User',
+			'title' => Yii::t('frontend', 'Title'),
+			'excerpt' => Yii::t('frontend', 'Excerpt'),
+			'content' => Yii::t('frontend', 'Content'),
 			'content_filtered' => 'Content Filtered',
-			'post_status' => 'Post Status',
-			'comment_status' => 'Comment Status',
-			'ping_status' => 'Ping Status',
-			'password' => 'Password',
-			'read_count' => 'Read Count',
+			'post_status' => Yii::t('frontend','Status'),
+			'comment_status' => Yii::t('frontend','Comments').Yii::t('frontend','Status'),
+			'ping_status' => Yii::t('frontend','Ping').Yii::t('frontend','Status'),
+			'password' => Yii::t('frontend','Password'),
+			'read_count' => Yii::t('frontend','Read Count'),
 			'post_type' => 'Post Type',
 			'to_ping' => 'To Ping',
 			'pinged' => 'Pinged',
 			'parent_id' => 'Parent',
 			'menu_order' => 'Menu Order',
-			'slug' => 'Slug',
+			'slug' => Yii::t('frontend','Slug'),
 			'created' => 'Created',
-			'update' => 'Update',
+			'updated' => 'Updated',
 		);
 	}
-
+    
+    /**
+     * @return array  MonthlyArchives
+     */
+    public function findArchives()
+	{
+		return $this->findAll(array(
+                'select'=>'YEAR(FROM_UNIXTIME(created)) AS `year`, MONTH(FROM_UNIXTIME(created)) AS `month`, count(id) as posts',
+                'condition'=>'t.status='.self::STATUS_PUBLISHED,
+                'group'=>'YEAR(FROM_UNIXTIME(created)), MONTH(FROM_UNIXTIME(created))',
+				'order'=>'t.created DESC',
+		));
+	}
+	
 	/**
+	 * @return string the URL that shows the detail of the post
+	 */
+	public function getUrl()
+	{
+		return Yii::app()->createUrl('posts/view', array(
+				'id'=>$this->id,
+				'title'=>str_replace(' ','-',  trim($this->title)),
+		));
+	}
+
+   
+    /**
+	 * This is invoked before the record is saved.
+	 * @return boolean whether the record should be saved.
+	 */
+	protected function beforeSave()
+	{
+		if(parent::beforeSave())
+		{
+			if($this->isNewRecord)
+			{
+				$this->created=date('Y-m-d H:i:s');
+                $this->updated=date('Y-m-d H:i:s');
+				$this->user_id=Yii::app()->user->id;
+			}
+			else
+				$this->updated=date('Y-m-d H:i:s');
+			return true;
+		}
+		else
+			return false;
+	}
+    
+    
+    /**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
@@ -116,26 +165,26 @@ class Posts extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('users_id',$this->users_id,true);
+		$criteria->compare('user_id',$this->user_id,true);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('excerpt',$this->excerpt,true);
 		$criteria->compare('content',$this->content,true);
-		$criteria->compare('content_filtered',$this->content_filtered,true);
 		$criteria->compare('post_status',$this->post_status);
 		$criteria->compare('comment_status',$this->comment_status);
 		$criteria->compare('ping_status',$this->ping_status);
-		$criteria->compare('password',$this->password,true);
 		$criteria->compare('read_count',$this->read_count,true);
 		$criteria->compare('post_type',$this->post_type,true);
 		$criteria->compare('to_ping',$this->to_ping,true);
 		$criteria->compare('pinged',$this->pinged,true);
 		$criteria->compare('parent_id',$this->parent_id,true);
 		$criteria->compare('menu_order',$this->menu_order,true);
-		$criteria->compare('slug',$this->slug,true);
 		$criteria->compare('created',$this->created,true);
-		$criteria->compare('update',$this->update,true);
+		$criteria->compare('updated',$this->updated,true);
 
 		return new CActiveDataProvider($this, array(
+            'sort'=>array(
+	            'defaultOrder'=>'created DESC', //设置默认排序是created倒序
+	        ),
 			'criteria'=>$criteria,
 		));
 	}

@@ -21,10 +21,13 @@ $this->menu=array(
 	'columns'=>array(
 		'id',
 		'title',
-		'post_status',
-		'read_count',
+        array(
+			'name'=>'post_status',
+			'value'=>'Lookup::item("PostStatus",$data->post_status)',
+			'filter'=>Lookup::items('PostStatus'),
+		),
 		'created',
-		'update',
+		'updated',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),

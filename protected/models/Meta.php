@@ -72,26 +72,45 @@ class Meta extends CActiveRecord
 			'meta_value' => 'Meta Value',
 		);
 	}
+    
+    /**
+     * @param type $object_id
+     * @param type $type
+     * @param type $meta_key
+     * @param type $meta_value
+     * @return boolean
+     */
+    public static function addMeta($object_id,$type,$meta_key,$meta_value=array())
+    {
+        if (isset($meta_value)){
+            $values = json_encode($meta_value);
+            $meta = new Meta;
+            $meta->object_id=$object_id;
+            $meta->type=$type;
+            $meta->meta_key=$meta_key;
+            $meta->meta_value=$values;
+           
+            if($meta->save()){
+                return true;
+            }
+        } 
+        
+    }
+    
+    /**
+     * @param type $object_id
+     * @param type $type
+     * @param type $meta_key
+     * @return array meta_value
+     */
+    public static function getMeta($object_id,$type,$meta_key)
+    {
+        $meta = new Meta;
+        $data = $meta->find(array(
+			'condition'=>'type=:type and object_id=:id and meta_key=:meta_key ',
+			'params'=>array(':type'=>$type,':id'=>$object_id,':meta_key'=>$meta_key))
+        );
+        return json_decode($data->attributes['meta_value']);
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('object_id',$this->object_id,true);
-		$criteria->compare('type',$this->type,true);
-		$criteria->compare('meta_key',$this->meta_key,true);
-		$criteria->compare('meta_value',$this->meta_value,true);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
 }

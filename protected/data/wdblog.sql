@@ -27,7 +27,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 CREATE TABLE IF NOT EXISTS `wd_attachments` (
   `id` bigint(20) unsigned NOT NULL auto_increment,
-  `users_id` bigint(20) unsigned NOT NULL,
+  `user_id` bigint(20) unsigned NOT NULL,
   `object_id` bigint(20) unsigned NOT NULL,
   `filename` varchar(255) default NULL,
   `oldfilename` varchar(255) default NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `wd_attachments` (
   `created` datetime default NULL,
   `updated` datetime default NULL,
   PRIMARY KEY  (`id`),
-  KEY `fk_wd_attachments_wd_users1` (`users_id`),
+  KEY `fk_wd_attachments_wd_users1` (`user_id`),
   KEY `fk_wd_attachments_wd_posts1` (`object_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='附件表' AUTO_INCREMENT=1 ;
 
@@ -172,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `wd_options` (
 
 CREATE TABLE IF NOT EXISTS `wd_posts` (
   `id` bigint(20) unsigned NOT NULL auto_increment,
-  `users_id` bigint(20) unsigned NOT NULL,
+  `user_id` bigint(20) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `excerpt` text,
   `content` longtext NOT NULL,
@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `wd_posts` (
   `created` datetime NOT NULL,
   `update` datetime NOT NULL,
   PRIMARY KEY  (`id`),
-  KEY `fk_wd_posts_wd_users1` (`users_id`)
+  KEY `fk_wd_posts_wd_users1` (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='内容表' AUTO_INCREMENT=1 ;
 
 --

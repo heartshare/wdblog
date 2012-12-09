@@ -32,12 +32,12 @@
 
 #content
 {
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 #sidebar
 {
-	padding: 20px 0;
+	padding: 10px 0;
 }
 
 #left-sidebar
@@ -95,6 +95,46 @@
 	background-color:#EFF4FA;
 	text-decoration:none;
 }
+
+div.post
+{
+	margin: 0 0 20px;
+}
+
+div.post .title
+{
+	border-bottom: 3px solid #8DB449;
+}
+
+div.post .title a
+{
+	text-decoration: none;
+}
+
+div.post .title a:hover
+{
+	color: #777;
+	text-decoration: underline;
+}
+
+div.post .title h2 span
+{
+	padding-left: 10px;
+}
+
+div.post .author
+{
+	color: #888;
+	padding-top: 5px;
+	margin: 0 0 5px;
+}
+
+div .tags
+{
+	padding: 5px;
+	background: #EFF5FB;
+}
+
 
 div.flash-error, div.flash-notice, div.flash-success
 {

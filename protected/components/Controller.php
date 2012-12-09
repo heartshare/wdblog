@@ -20,4 +20,19 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+    
+    public function init() {
+        parent::init();
+        
+//        Yii::app()->clientScript->registerMetaTag('content',"generator");
+//        Yii::app()->clientScript->registerMetaTag('content',"generator");
+        Yii::app()->clientScript->registerMetaTag('content',"revised");
+        Yii::app()->clientScript->registerMetaTag('all',"robots");
+        
+        Yii::app()->clientScript->registerMetaTag('content',"generator");
+        Yii::app()->clientScript->registerMetaTag('content',"author");
+        Yii::app()->clientScript->registerMetaTag(Yii::app()->language,"language");
+        Yii::app()->clientScript->registerMetaTag("keywords.","keywords");
+        Yii::app()->clientScript->registerMetaTag("description content.","description");
+    }
 }
