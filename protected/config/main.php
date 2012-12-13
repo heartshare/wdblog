@@ -8,11 +8,14 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Hello WindsDeng',
-    'defaultController'=>'posts',
-   // 'theme'=>'classic',     //皮肤配置 default为默认或注释掉
-    'language'=>'zh_cn',
+        'defaultController'=>'posts',
+       // 'theme'=>'classic',     //皮肤配置 default为默认或注释掉
+        'language'=>'zh_cn',
 	// preloading 'log' component
-	'preload'=>array('log','bootstrap'),
+	'preload'=>array(
+            'log',
+            'bootstrap'
+          ),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -28,9 +31,9 @@ return array(
 			'password'=>'windsdeng',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
-            'generatorPaths' => array(
-                'bootstrap.gii'
-             ),
+                        'generatorPaths' => array(
+                            'bootstrap.gii'
+                         ),
 		),
 		
 	),

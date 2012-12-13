@@ -12,11 +12,11 @@ Yii::setPathOfAlias('backend', $backend);
 
 return array(
 	'basePath'=>$frontend,
-    'controllerPath' => $backend.'/controllers',
-    'viewPath' => $backend.'/views',
-    'runtimePath' => $backend.'/runtime',
+        'controllerPath' => $backend.'/controllers',
+        'viewPath' => $backend.'/views',
+        'runtimePath' => $backend.'/runtime',
 	'name'=>'WindsDeng Backend',
-
+        'language'=>'zh_cn',
 	// preloading 'log' component
 	'preload'=>array('log','bootstrap'),
 

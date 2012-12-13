@@ -3,11 +3,6 @@ $this->breadcrumbs=array(
 	Yii::t('frontend','Posts')=>array('index'),
 	Yii::t('frontend', 'Create'),
 );
-
-$this->menu=array(
-	array('label'=>'List Posts','url'=>array('index')),
-	array('label'=>'Manage Posts','url'=>array('admin')),
-);
 ?>
 
 <h1><?php echo Yii::t('frontend','Create'),Yii::t('frontend','Posts')?></h1>

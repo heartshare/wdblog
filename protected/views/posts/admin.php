@@ -3,12 +3,6 @@ $this->breadcrumbs=array(
 	'Posts'=>array('index'),
 	'Manage',
 );
-
-$this->menu=array(
-	array('label'=>'List Posts','url'=>array('index')),
-	array('label'=>'Create Posts','url'=>array('create')),
-);
-
 ?>
 
 
@@ -17,7 +11,7 @@ $this->menu=array(
 	'id'=>'posts-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-    'template' => "{items}",
+        'template' => "{items}",
 	'columns'=>array(
 		'id',
 		'title',

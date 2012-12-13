@@ -14,11 +14,10 @@ $this->breadcrumbs=array(
 		posted by <?php echo $model->author->username . ' on ' . $model->created; ?>
     </div>
     <div class="content">
-       <?php
-			$this->beginWidget('CMarkdown', array('purifyOutput'=>true));
+       <?php $this->beginWidget('CMarkdown', array('purifyOutput'=>true));
                 echo $model->content;
-			$this->endWidget();
-		?>
+        $this->endWidget();
+        ?>
     </div>
     <div class="tags">
 		<b>Tags:</b>

@@ -19,7 +19,7 @@
         'tabs' => array(
             array('label' => Yii::t('frontend','Excerpt'), 'content' => $form->textAreaRow($model,'excerpt',array('rows'=>4, 'cols'=>50, 'class'=>'span8')), 'active' => true),
             array('label' => 'SEO'.Yii::t('frontend', 'Optimization'), 'content' => $form->textFieldRow($seoForm,'keywords',array('class'=>'span8','maxlength'=>255)).$form->textAreaRow($seoForm,'description',array('class'=>'span8','maxlength'=>255)).$form->textFieldRow($model,'slug',array('class'=>'span8','maxlength'=>255))),
-            array('label' => Yii::t('frontend', 'Privacy'), 'content' => $form->toggleButtonRow($model,'comment_status').$form->toggleButtonRow($model,'ping_status').$form->passwordFieldRow($model,'password',array('class'=>'span5','maxlength'=>32))),
+            array('label' => Yii::t('frontend', 'Privacy'), 'content' => $form->toggleButtonRow($model,'comment_status').$form->toggleButtonRow($model,'ping_status').$form->textFieldRow($model,'password',array('class'=>'span5','maxlength'=>32))),
         ),
     )); ?>  
     
