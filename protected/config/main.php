@@ -54,7 +54,7 @@ return array(
 
         'bootstrap' => array(
             'class' => 'ext.bootstrap.components.Bootstrap',
-            'responsiveCss' => false,
+            'responsiveCss' => true,
         ),
 		'user'=>array(
 			// enable cookie-based authentication

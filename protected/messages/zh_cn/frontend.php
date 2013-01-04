@@ -53,6 +53,9 @@ return array (
     'Read Count' => '阅读数',
     'Description' => '描述',
     'Keywords' => '关键词',
+    'Created' => '创建时间',
+    'Updated' => '更新时间',
+    
     //Comments
     'Ping' => '评分',
     'Comments' => '评论',

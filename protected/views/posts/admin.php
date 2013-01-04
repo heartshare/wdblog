@@ -16,14 +16,14 @@ $this->breadcrumbs=array(
 		'id',
 		'title',
         array(
-			'name'=>'post_status',
-			'value'=>'Lookup::item("PostStatus",$data->post_status)',
-			'filter'=>Lookup::items('PostStatus'),
-		),
-		'created',
-		'updated',
-		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
-		),
+                'name'=>'post_status',
+                'value'=>'Lookup::item("PostStatus",$data->post_status)',
+                'filter'=>Lookup::items('PostStatus'),
+        ),
+        'created',
+        'updated',
+        array(
+                'class'=>'bootstrap.widgets.TbButtonColumn',
+        ),
 	),
 )); ?>

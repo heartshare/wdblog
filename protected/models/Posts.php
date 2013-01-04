@@ -100,8 +100,8 @@ class Posts extends CActiveRecord
 			'parent_id' => 'Parent',
 			'menu_order' => 'Menu Order',
 			'slug' => Yii::t('frontend','Slug'),
-			'created' => 'Created',
-			'updated' => 'Updated',
+			'created' => Yii::t('frontend','Created'),
+			'updated' => Yii::t('frontend','Updated'),
 		);
 	}
     
