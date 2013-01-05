@@ -168,6 +168,7 @@ Stack trace:
 #22 {main}
 REQUEST_URI=/wdblog/
 ---
+<<<<<<< HEAD
 2012/12/21 06:07:49 [error] [exception.CException] exception 'CException' with message '属性 "Posts.updated" 未被定义.' in D:\PHPnow\htdocs\yii\framework\base\CComponent.php:173
 Stack trace:
 #0 D:\PHPnow\htdocs\yii\framework\db\ar\CActiveRecord.php(159): CComponent->__set('updated', '2012-12-21 06:0...')
@@ -192,3 +193,27 @@ Stack trace:
 REQUEST_URI=/wdblog/index.php?r=posts/create
 HTTP_REFERER=http://localhost/wdblog/index.php?r=posts/create
 ---
+=======
+2013/01/04 15:14:15 [error] [php] Undefined variable: data (C:\xampp\htdocs\wdblog\protected\views\posts\admin.php:26)
+Stack trace:
+#0 C:\xampp\htdocs\wdblog\yii\framework\web\CController.php(869): PostsController->renderFile()
+#1 C:\xampp\htdocs\wdblog\yii\framework\web\CController.php(782): PostsController->renderPartial()
+#2 C:\xampp\htdocs\wdblog\protected\controllers\PostsController.php(164): PostsController->render()
+#3 C:\xampp\htdocs\wdblog\yii\framework\web\actions\CInlineAction.php(49): PostsController->actionAdmin()
+#4 C:\xampp\htdocs\wdblog\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\wdblog\yii\framework\web\filters\CFilterChain.php(133): PostsController->runAction()
+#6 C:\xampp\htdocs\wdblog\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\wdblog\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\wdblog\yii\framework\web\filters\CInlineFilter.php(58): PostsController->filterAccessControl()
+#9 C:\xampp\htdocs\wdblog\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\xampp\htdocs\wdblog\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\wdblog\yii\framework\web\CController.php(265): PostsController->runActionWithFilters()
+#12 C:\xampp\htdocs\wdblog\yii\framework\web\CWebApplication.php(282): PostsController->run()
+#13 C:\xampp\htdocs\wdblog\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\xampp\htdocs\wdblog\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\wdblog\index.php(13): CWebApplication->run()
+REQUEST_URI=/wdblog/index.php?r=posts%2Fadmin&Posts_sort=created&ajax=posts-grid
+in C:\xampp\htdocs\wdblog\protected\views\posts\admin.php (26)
+in C:\xampp\htdocs\wdblog\protected\controllers\PostsController.php (164)
+in C:\xampp\htdocs\wdblog\index.php (13)
+>>>>>>> origin/master

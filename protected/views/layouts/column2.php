@@ -1,6 +1,17 @@
 <?php $this->beginContent('//layouts/main'); ?>
-<div class="left " id="left-sidebar">
-	<div id="sidebar">
+<div class="row-fluid">
+<div class="span9 ">
+    <?php if(isset($this->breadcrumbs)):?>
+		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
+			'links'=>$this->breadcrumbs,
+		)); ?><!-- breadcrumbs -->
+	<?php endif?>
+	<div id="content">
+		<?php echo $content; ?>
+	</div><!-- content -->
+</div>
+<div class="span3">
+    <div id="sidebar">
 	<?php
 		$this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>Yii::t('frontend', 'User Menu'),
@@ -8,7 +19,6 @@
     ?>
     <ul>
         <?php if(Yii::app()->user->isGuest): ?>
-
         <li>
             <?php $this->widget('ext.oauthLogin.OauthLogin',array(
                 'itemView'=>'medium_login',
@@ -23,18 +33,7 @@
         <?php endif; ?>
     </ul>
 	<?php $this->endWidget(); ?>
-	</div><!-- sidebar -->
+    </div><!-- sidebar -->
 </div>
-<div class="span-18 last">
-    <?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
-	<div id="content">
-		<?php echo $content; ?>
-	</div><!-- content -->
-</div>
-
-
+</div>  
 <?php $this->endContent(); ?>
