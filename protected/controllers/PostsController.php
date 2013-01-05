@@ -140,7 +140,7 @@ class PostsController extends Controller
 		$dataProvider = new CActiveDataProvider('Posts',array(
 				'criteria'=>$criteria,
 				'pagination'=>array(
-						'pageSize'=>10,
+						'pageSize'=>2,
 				),
 		));
         
