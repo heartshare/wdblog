@@ -25,7 +25,7 @@ class Controller extends CController
         parent::init();
         
 //        Yii::app()->clientScript->registerMetaTag('content',"generator");
-//        Yii::app()->clientScript->registerMetaTag('content',"generator");
+
         Yii::app()->clientScript->registerMetaTag('content',"revised");
         Yii::app()->clientScript->registerMetaTag('all',"robots");
         
@@ -34,5 +34,6 @@ class Controller extends CController
         Yii::app()->clientScript->registerMetaTag(Yii::app()->language,"language");
         Yii::app()->clientScript->registerMetaTag("keywords.","keywords");
         Yii::app()->clientScript->registerMetaTag("description content.","description");
+		//Yii::app()->clientScript->registerMetaTag("max-age=7200","Cache-Control");
     }
 }
