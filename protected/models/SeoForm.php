@@ -1,9 +1,9 @@
 <?php
 
 /**
- * MetaForm class.
- * MetaForm is the data structure for keeping
- * Meta form data. 
+ * SeoForm class.
+ * SeoForm is the data structure for keeping
+ * Seo form data. 
  */
 class SeoForm extends CFormModel
 {

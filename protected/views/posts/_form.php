@@ -9,6 +9,8 @@
 
 	<?php echo $form->textFieldRow($model,'title',array('class'=>'span9','maxlength'=>255)); ?>
     
+    <?php echo $form->checkBoxListInlineRow($terms,'term_id',  Terms::items('posts')); ?>
+    
 	<?php echo $form->markdownEditorRow($model,'content',array('rows'=>5, 'cols'=>60, 'class'=>'span9')); ?>
 
 	<?php echo $form->dropDownListRow($model,'post_status',Lookup::items('UserPostStatus')); ?>

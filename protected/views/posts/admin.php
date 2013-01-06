@@ -21,7 +21,6 @@ $this->breadcrumbs=array(
                 'filter'=>Lookup::items('PostStatus'),
         ),
         'created',
-        'updated',
         array(
                 'class'=>'bootstrap.widgets.TbButtonColumn',
         ),

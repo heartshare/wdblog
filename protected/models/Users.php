@@ -69,6 +69,7 @@ class Users extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
             'posts' => array(self::HAS_MANY, 'Posts', 'user_id'),
+            'bind'=>array(self::HAS_MANY,'UserBinding','user_id'),
 		);
 	}
 
@@ -94,6 +95,17 @@ class Users extends CActiveRecord
 			'updated' => 'Updated',
 		);
 	}
+    
+    /**
+     * 获取名字
+     * @param type $user_id
+     * @return type username
+     */
+    public static function getUsername($user_id)
+    {
+        $model=Users::model()->findByPk($user_id);
+        return $model->attributes['nickname'] ? $model->attributes['nickname'] : $model->attributes['username'];
+    }
     
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.

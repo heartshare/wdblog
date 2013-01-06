@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table '{{term_relationships}}':
  * @property string $object_id
- * @property string $term_taxonomy_id
+ * @property string $term_id
  * @property string $term_order
  */
 class TermRelationships extends CActiveRecord
@@ -36,12 +36,12 @@ class TermRelationships extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('object_id, term_taxonomy_id', 'required'),
-			array('object_id, term_taxonomy_id', 'length', 'max'=>20),
+			array('object_id, term_id', 'required'),
+			array('object_id, term_id', 'length', 'max'=>20),
 			array('term_order', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('object_id, term_taxonomy_id, term_order', 'safe', 'on'=>'search'),
+			array('object_id, term_id, term_order', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,12 +63,22 @@ class TermRelationships extends CActiveRecord
 	{
 		return array(
 			'object_id' => 'Object',
-			'term_taxonomy_id' => 'Term Taxonomy',
+			'term_id' => 'Term',
 			'term_order' => 'Term Order',
 		);
 	}
 
-	/**
+    public static function addTerm($object_id,$term_id)
+    {
+        $model = new TermRelationships;
+        $model->object_id = $object_id;
+        $model->term_id = $term_id;
+        if($model->save()){
+            return true;
+        }
+    }
+
+        /**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
@@ -80,7 +90,7 @@ class TermRelationships extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('object_id',$this->object_id,true);
-		$criteria->compare('term_taxonomy_id',$this->term_taxonomy_id,true);
+		$criteria->compare('term_id',$this->term_id,true);
 		$criteria->compare('term_order',$this->term_order,true);
 
 		return new CActiveDataProvider($this, array(

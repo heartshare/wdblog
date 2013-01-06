@@ -129,8 +129,7 @@ DROP TABLE IF EXISTS `wdblog`.`wd_term_relationships` ;
 CREATE  TABLE IF NOT EXISTS `wdblog`.`wd_term_relationships` (
   `object_id` BIGINT(20) UNSIGNED NOT NULL COMMENT '对象ID' ,
   `term_id` BIGINT(20) UNSIGNED NOT NULL COMMENT '分类或标签ID' ,
-  `term_order` INT(11) UNSIGNED NULL COMMENT '其他描述' ,
-  PRIMARY KEY (`object_id`) ,
+  `term_order` INT(11) UNSIGNED NULL COMMENT '排序' ,
   INDEX `fk_wd_term_relationships_wd_term_taxonomy1` (`term_id` ASC) ,
   CONSTRAINT `fk_wd_term_relationships_wd_term_taxonomy1`
     FOREIGN KEY (`term_id` )

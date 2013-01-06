@@ -59,16 +59,29 @@ class PostsController extends Controller
 	{
 		$model=new Posts;
         $seoModel =new SeoForm;
+        $terms = new TermRelationships;
         
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
         
 		if(isset($_POST['Posts']))
 		{
+            //print_r($_POST['TermRelationships']);exit();
 			$model->attributes=$_POST['Posts'];
-			if($model->save()){
+			if($model->save())
+            {
                 //添加 keywords and description
                 Meta::addMeta($model->id, 'posts', '_seo_post_meta', $_POST['SeoForm']);
+                
+                //添加分类
+                if(isset($_POST['TermRelationships']))
+                {
+                    foreach ($_POST['TermRelationships']['term_id'] as $value) 
+                    {
+                        TermRelationships::addTerm($model->id, $value);
+                    }
+                }
+                
                 $this->redirect(array('view','id'=>$model->id));
             }
 				
@@ -77,6 +90,7 @@ class PostsController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
             'seoForm'=>$seoModel,
+            'terms'=>$terms,
 		));
 	}
 
@@ -89,12 +103,14 @@ class PostsController extends Controller
 	{
 		$model=$this->loadModel($id);
         $seoModel =new SeoForm;
+        $terms = new TermRelationships;
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
         
         $meta = Meta::getMeta($id, 'posts', '_seo_post_meta');
         $seoModel->keywords= $meta->keywords;
         $seoModel->description= $meta->description;
+        
 		if(isset($_POST['Posts']))
 		{
 			$model->attributes=$_POST['Posts'];
@@ -105,6 +121,7 @@ class PostsController extends Controller
 		$this->render('update',array(
 			'model'=>$model,
             'seoForm'=>$seoModel,
+            'terms'=>$terms,
 		));
 	}
 

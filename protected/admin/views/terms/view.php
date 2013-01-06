@@ -19,7 +19,11 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
+		'parent_id',
+		'taxonomy',
 		'name',
 		'slug',
+		'description',
+		'count',
 	),
 )); ?>

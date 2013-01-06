@@ -30,28 +30,20 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'user_id',
 		'title',
-		'excerpt',
-		'content',
-		'content_filtered',
-		/*
-		'post_status',
-		'comment_status',
-		'ping_status',
-		'password',
-		'read_count',
-		'post_type',
-		'to_ping',
-		'pinged',
-		'parent_id',
-		'menu_order',
-		'slug',
-		'created',
-		'update',
-		*/
-		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
-		),
+        array(
+                'name'=>'user_id',
+                'value'=>'Users::getUsername($data->user_id)',
+                'filter'=>false,
+        ),
+        array(
+                'name'=>'post_status',
+                'value'=>'Lookup::item("PostStatus",$data->post_status)',
+                'filter'=>Lookup::items('PostStatus'),
+        ),
+        'created',
+        array(
+                'class'=>'bootstrap.widgets.TbButtonColumn',
+        ),
 	),
 )); ?>

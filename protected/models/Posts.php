@@ -84,7 +84,7 @@ class Posts extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => 'User',
+			'user_id' =>Yii::t('frontend', 'Users'),
 			'title' => Yii::t('frontend', 'Title'),
 			'excerpt' => Yii::t('frontend', 'Excerpt'),
 			'content' => Yii::t('frontend', 'Content'),
