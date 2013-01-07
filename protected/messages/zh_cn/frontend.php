@@ -55,6 +55,7 @@ return array (
     'Keywords' => '关键词',
     'Created' => '创建时间',
     'Updated' => '更新时间',
+    'Categories'=>'文章分类',
     
     //Comments
     'Ping' => '评分',

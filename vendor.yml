@@ -1,0 +1,18 @@
+# jQuery
+- (^|/)jquery([^.]*)(\.min)?\.js$
+- (^|/)jquery\-\d\.\d(\.\d)?(\.min)?\.js$
+# LESS css
+- (^|/)less([^.]*)(\.min)?\.js$
+- (^|/)less\-\d+\.\d+\.\d+(\.min)?\.js$
+# jQuery validation plugin (MS bundles this with asp.net mvc)
+- (^|/)jquery([^.]*)\.validate(\.min)?\.js$
+#extensions
+- extensions/
+#runtime
+- runtime/
+#data
+- data
+#assets
+- assets/
+#Yii
+- yii/

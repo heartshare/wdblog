@@ -63,7 +63,7 @@ class TermRelationships extends CActiveRecord
 	{
 		return array(
 			'object_id' => 'Object',
-			'term_id' => 'Term',
+			'term_id' => Yii::t('frontend', 'Categories'),
 			'term_order' => 'Term Order',
 		);
 	}
