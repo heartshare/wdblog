@@ -12,6 +12,13 @@ $this->breadcrumbs=array(
 	</div>
     <div class="author">
 		posted by <?php echo $model->author->username . ' on ' . $model->created; ?>
+        
+        Category :
+        <?php $this->widget('Terms',array(
+            'id'=>$model->id,
+            'type'=>'posts',
+        ));
+        ?>
     </div>
     <div class="content">
        <?php $this->beginWidget('CMarkdown', array('purifyOutput'=>true));
@@ -21,6 +28,10 @@ $this->breadcrumbs=array(
     </div>
     <div class="tags">
 		<b>Tags:</b>
-		
+		<?php $this->widget('Terms',array(
+            'id'=>$model->id,
+            'type'=>'tags',
+        ));
+        ?>
 	</div>
 </div>

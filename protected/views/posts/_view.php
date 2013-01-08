@@ -4,6 +4,13 @@
 	</div>
     <div class="author">
 		posted by <?php echo $data->author->username . ' on ' . $data->created; ?>
+        Category :
+        <?php $this->beginWidget('ext.Terms.Terms',array(
+            'id'=>$data->id,
+           // 'type'=>'posts',
+        ));
+        $this->endWidget();
+        ?>
     </div>
     <div class="content">
         <?php
@@ -14,6 +21,10 @@
     </div>
     <div class="tags">
 		<b>Tags:</b>
-		
+		<?php $this->widget('Terms',array(
+            'id'=>$data->id,
+            'type'=>'tags',
+        ));
+        ?>
 	</div>
 </div>

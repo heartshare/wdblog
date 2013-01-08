@@ -46,6 +46,16 @@ class PostsController extends Controller
 	 */
 	public function actionView($id)
 	{
+        $model = TermRelationships::getTerms($id);
+        if(isset($model))
+        {
+            $terms = array();
+            foreach ($model as $value) 
+            {
+                $terms[$value['taxonomy']][] = $value;
+            }
+        }
+        
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -66,7 +76,6 @@ class PostsController extends Controller
         
 		if(isset($_POST['Posts']))
 		{
-            //print_r($_POST['TermRelationships']);exit();
 			$model->attributes=$_POST['Posts'];
 			if($model->save())
             {
@@ -107,10 +116,29 @@ class PostsController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
         
+        $tagsList = TermRelationships::getTerms($id, 'tags');
+        if(isset($tagsList))
+        {
+            $tag = array();
+            foreach($tagsList as $v)
+            {
+                $tag[] = $v['name'];
+            }
+        }
+        $tags = implode(',',$tag);
         $meta = Meta::getMeta($id, 'posts', '_seo_post_meta');
         $seoModel->keywords= $meta->keywords;
         $seoModel->description= $meta->description;
-        
+        $cagegory = TermRelationships::getTerms($id, 'posts');
+        if(isset($cagegory))
+        {
+            $term_ids = array();
+            foreach($cagegory as $v)
+            {
+                $term_ids[] = $v['term_id'];
+            }
+        }
+        $terms->term_id = $term_ids;
 		if(isset($_POST['Posts']))
 		{
 			$model->attributes=$_POST['Posts'];
@@ -122,6 +150,7 @@ class PostsController extends Controller
 			'model'=>$model,
             'seoForm'=>$seoModel,
             'terms'=>$terms,
+            'tags'=>$tags,
 		));
 	}
 

@@ -116,8 +116,15 @@ class Terms extends CActiveRecord
 			'condition'=>'taxonomy=:type',
 			'params'=>array(':type'=>$type),
 		));
-		foreach($models as $model)
-			self::$_items[$type][$model->id]=$model->name;
+        if($type == 'tags')
+        {
+            foreach($models as $model)
+                self::$_items[$type][]=$model->name;
+        }else{
+            foreach($models as $model)
+                self::$_items[$type][$model->id]=$model->name;
+        }
+		
     }
 
     /**

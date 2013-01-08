@@ -6,4 +6,4 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<?php echo $this->renderPartial('_form',array('model'=>$model,'seoForm'=>$seoForm)); ?>
+<?php echo $this->renderPartial('_form',array('model'=>$model,'seoForm'=>$seoForm,'tags'=>$tags,'terms'=>$terms)); ?>

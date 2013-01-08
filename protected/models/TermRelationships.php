@@ -68,6 +68,7 @@ class TermRelationships extends CActiveRecord
 		);
 	}
 
+    
     public static function addTerm($object_id,$term_id)
     {
         $model = new TermRelationships;
@@ -77,8 +78,20 @@ class TermRelationships extends CActiveRecord
             return true;
         }
     }
+    
+    public static function getTerms($object_id,$type=null)
+    {
+        if(isset($type)){
+            $where = "  and t.taxonomy ='$type'"; 
+        }else{
+            $where = "";
+        }
+        $sql="SELECT t.taxonomy ,t.name,l.object_id,l.term_order,l.term_id as term_id FROM {{term_relationships}} as l left join {{terms}} as t on l.term_id = t.id where l.object_id=$object_id $where ";
+        $model=Yii::app()->db->createCommand($sql)->queryAll();
+        return $model;
+    }
 
-        /**
+    /**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
