@@ -22,15 +22,15 @@ class Terms extends CWidget
                     $this->data[$value['taxonomy']][] = $value;
                 }
             }
-            return $this->data[$this->type];
+            return $this->data;
     }
 
     public function run()
     {
-          
+         
             //注意widget的视图是放在跟widgets同级的views目录下面，例如下面的视图会放置在
             $this->render('terms', array(
-                'data'=>$this->data,
+                'data'=>$this->data[$this->type],
             ));
         }
 

@@ -56,6 +56,8 @@ return array (
     'Created' => '创建时间',
     'Updated' => '更新时间',
     'Categories'=>'文章分类',
+    'Edit'=>'编辑',
+    'Views'=>'阅读数',
     
     //Comments
     'Ping' => '评分',

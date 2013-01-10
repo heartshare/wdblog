@@ -55,7 +55,7 @@ class PostsController extends Controller
                 $terms[$value['taxonomy']][] = $value;
             }
         }
-        
+        Posts::model()->updateCounters(array('read_count'=>1)); //更新阅读数
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));

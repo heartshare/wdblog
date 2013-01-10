@@ -74,6 +74,8 @@ class Posts extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
             'author' => array(self::BELONGS_TO, 'Users', 'user_id'),
+            'comments' => array(self::HAS_MANY, 'Comments', 'post_id', 'condition'=>'comments.status='.Comments::STATUS_APPROVED, 'order'=>'comments.id DESC'),
+			'commentCount' => array(self::STAT, 'Comments', 'post_id', 'condition'=>'status='.Comments::STATUS_APPROVED),
 		);
 	}
 
