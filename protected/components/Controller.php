@@ -34,6 +34,5 @@ class Controller extends CController
         Yii::app()->clientScript->registerMetaTag(Yii::app()->language,"language");
         Yii::app()->clientScript->registerMetaTag("keywords.","keywords");
         Yii::app()->clientScript->registerMetaTag("description content.","description");
-		//Yii::app()->clientScript->registerMetaTag("max-age=7200","Cache-Control");
     }
 }
