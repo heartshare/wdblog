@@ -70,7 +70,7 @@ class PostsController extends Controller
 		$model=new Posts;
         $seoModel =new SeoForm;
         $terms = new TermRelationships;
-        
+        $tags = '';
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
         
@@ -83,7 +83,7 @@ class PostsController extends Controller
                 Meta::addMeta($model->id, 'posts', '_seo_post_meta', $_POST['SeoForm']);
                 
                 //添加分类
-                if(isset($_POST['TermRelationships']))
+                if(!empty($_POST['TermRelationships']['term_id']))
                 {
                     foreach ($_POST['TermRelationships']['term_id'] as $value) 
                     {
@@ -100,6 +100,7 @@ class PostsController extends Controller
 			'model'=>$model,
             'seoForm'=>$seoModel,
             'terms'=>$terms,
+            'tags'=>$tags,
 		));
 	}
 
