@@ -79,6 +79,11 @@ class TermRelationships extends CActiveRecord
         }
     }
     
+    public static function editTerm($id,$object_id,$term_id)
+    {
+      
+    }
+
     public static function getTerms($object_id,$type=null)
     {
         if(isset($type)){

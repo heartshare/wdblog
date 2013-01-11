@@ -13,7 +13,7 @@
     
 	<?php echo $form->markdownEditorRow($model,'content',array('rows'=>5, 'cols'=>60, 'class'=>'span9')); ?>
    
-   <label for="Posts_post_status">标签</label>
+   <label for="Posts_post_tags">标签</label>
     <?php $this->widget('bootstrap.widgets.TbSelect2', array(
         'asDropDownList' => false,
         'name' => 'tags',

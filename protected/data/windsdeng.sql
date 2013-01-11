@@ -1,6 +1,6 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 DROP SCHEMA IF EXISTS `wdblog` ;
 CREATE SCHEMA IF NOT EXISTS `wdblog` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
@@ -30,7 +30,7 @@ CREATE  TABLE IF NOT EXISTS `wdblog`.`wd_users` (
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci
-COMMENT = '用户表' ;
+COMMENT = '用户表';
 
 
 -- -----------------------------------------------------
@@ -46,16 +46,11 @@ CREATE  TABLE IF NOT EXISTS `wdblog`.`wd_user_binding` (
   `created` DATETIME NOT NULL COMMENT '创建时间' ,
   `updated` DATETIME NOT NULL COMMENT '更新时间' ,
   INDEX `fk_wd_user_binding_wd_user` (`user_id` ASC) ,
-  PRIMARY KEY (`user_id`) ,
-  CONSTRAINT `fk_wd_user_binding_wd_user`
-    FOREIGN KEY (`user_id` )
-    REFERENCES `wdblog`.`wd_users` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`user_id`) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci, 
-COMMENT = '第三方绑定表' ;
+COLLATE = utf8_general_ci
+COMMENT = '第三方绑定表';
 
 
 -- -----------------------------------------------------
@@ -84,16 +79,11 @@ CREATE  TABLE IF NOT EXISTS `wdblog`.`wd_posts` (
   `created` DATETIME NOT NULL COMMENT '创建时间' ,
   `updated` DATETIME NOT NULL COMMENT '更新时间' ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_wd_posts_wd_users1` (`user_id` ASC) ,
-  CONSTRAINT `fk_wd_posts_wd_users1`
-    FOREIGN KEY (`user_id` )
-    REFERENCES `wdblog`.`wd_users` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_wd_posts_wd_users1` (`user_id` ASC) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci, 
-COMMENT = '内容表' ;
+COLLATE = utf8_general_ci
+COMMENT = '内容表';
 
 
 -- -----------------------------------------------------
@@ -110,12 +100,7 @@ CREATE  TABLE IF NOT EXISTS `wdblog`.`wd_terms` (
   `description` TEXT NULL COMMENT '描述' ,
   `count` BIGINT(20) UNSIGNED NULL DEFAULT 0 COMMENT '关联文章数量' ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_wd_term_taxonomy_wd_term_taxonomy1` (`parent_id` ASC) ,
-  CONSTRAINT `fk_wd_term_taxonomy_wd_term_taxonomy1`
-    FOREIGN KEY (`parent_id` )
-    REFERENCES `wdblog`.`wd_terms` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_wd_term_taxonomy_wd_term_taxonomy1` (`parent_id` ASC) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
@@ -130,12 +115,7 @@ CREATE  TABLE IF NOT EXISTS `wdblog`.`wd_term_relationships` (
   `object_id` BIGINT(20) UNSIGNED NOT NULL COMMENT '对象ID' ,
   `term_id` BIGINT(20) UNSIGNED NOT NULL COMMENT '分类或标签ID' ,
   `term_order` INT(11) UNSIGNED NULL COMMENT '排序' ,
-  INDEX `fk_wd_term_relationships_wd_term_taxonomy1` (`term_id` ASC) ,
-  CONSTRAINT `fk_wd_term_relationships_wd_term_taxonomy1`
-    FOREIGN KEY (`term_id` )
-    REFERENCES `wdblog`.`wd_terms` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_wd_term_relationships_wd_term_taxonomy1` (`term_id` ASC) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
@@ -154,8 +134,8 @@ CREATE  TABLE IF NOT EXISTS `wdblog`.`wd_options` (
   PRIMARY KEY (`id`) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci, 
-COMMENT = '配置表' ;
+COLLATE = utf8_general_ci
+COMMENT = '配置表';
 
 
 -- -----------------------------------------------------
@@ -181,8 +161,8 @@ CREATE  TABLE IF NOT EXISTS `wdblog`.`wd_links` (
   PRIMARY KEY (`id`) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci, 
-COMMENT = '链接表' ;
+COLLATE = utf8_general_ci
+COMMENT = '链接表';
 
 
 -- -----------------------------------------------------
@@ -197,16 +177,11 @@ CREATE  TABLE IF NOT EXISTS `wdblog`.`wd_meta` (
   `meta_key` VARCHAR(255) NOT NULL COMMENT 'meta 对应的名称\n' ,
   `meta_value` TEXT NOT NULL COMMENT '值，保存json' ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_wd_meta_wd_users1` (`object_id` ASC) ,
-  CONSTRAINT `fk_wd_meta_wd_users1`
-    FOREIGN KEY (`object_id` )
-    REFERENCES `wdblog`.`wd_users` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_wd_meta_wd_users1` (`object_id` ASC) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci, 
-COMMENT = 'meta data' ;
+COLLATE = utf8_general_ci
+COMMENT = 'meta data';
 
 
 -- -----------------------------------------------------
@@ -226,29 +201,17 @@ CREATE  TABLE IF NOT EXISTS `wdblog`.`wd_comments` (
   `author_url` VARCHAR(255) NULL COMMENT '个人网址' ,
   `author_ip` VARCHAR(86) NOT NULL COMMENT 'IP' ,
   `content` TEXT NOT NULL COMMENT '评论内容' ,
+  `other_details` TEXT NULL ,
+  `created` DATETIME NULL ,
+  `updated` DATETIME NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_wd_comments_wd_users1` (`user_id` ASC) ,
   INDEX `fk_wd_comments_wd_comments1` (`parent_id` ASC) ,
-  INDEX `fk_wd_comments_wd_posts1` (`post_id` ASC) ,
-  CONSTRAINT `fk_wd_comments_wd_users1`
-    FOREIGN KEY (`user_id` )
-    REFERENCES `wdblog`.`wd_users` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wd_comments_wd_comments1`
-    FOREIGN KEY (`parent_id` )
-    REFERENCES `wdblog`.`wd_comments` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wd_comments_wd_posts1`
-    FOREIGN KEY (`post_id` )
-    REFERENCES `wdblog`.`wd_posts` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_wd_comments_wd_posts1` (`post_id` ASC) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci, 
-COMMENT = '评论表' ;
+COLLATE = utf8_general_ci
+COMMENT = '评论表';
 
 
 -- -----------------------------------------------------
@@ -265,8 +228,8 @@ CREATE  TABLE IF NOT EXISTS `wdblog`.`wd_lookup` (
   PRIMARY KEY (`id`) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci, 
-COMMENT = '状态表' ;
+COLLATE = utf8_general_ci
+COMMENT = '状态表';
 
 
 -- -----------------------------------------------------
@@ -287,22 +250,13 @@ CREATE  TABLE IF NOT EXISTS `wdblog`.`wd_attachments` (
   `updated` DATETIME NULL COMMENT '更新时间' ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_wd_attachments_wd_users1` (`user_id` ASC) ,
-  INDEX `fk_wd_attachments_wd_posts1` (`object_id` ASC) ,
-  CONSTRAINT `fk_wd_attachments_wd_users1`
-    FOREIGN KEY (`user_id` )
-    REFERENCES `wdblog`.`wd_users` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_wd_attachments_wd_posts1`
-    FOREIGN KEY (`object_id` )
-    REFERENCES `wdblog`.`wd_posts` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_wd_attachments_wd_posts1` (`object_id` ASC) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_general_ci, 
-COMMENT = '附件表' ;
+COLLATE = utf8_general_ci
+COMMENT = '附件表';
 
+USE `wdblog` ;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

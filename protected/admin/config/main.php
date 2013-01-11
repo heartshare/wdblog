@@ -12,13 +12,17 @@ Yii::setPathOfAlias('backend', $backend);
 
 return array(
 	'basePath'=>$frontend,
-        'controllerPath' => $backend.'/controllers',
-        'viewPath' => $backend.'/views',
-        'runtimePath' => $backend.'/runtime',
-	'name'=>'WindsDeng Backend',
-        'language'=>'zh_cn',
-	// preloading 'log' component
-	'preload'=>array('log','bootstrap'),
+    'controllerPath' => $backend.'/controllers',
+    'viewPath' => $backend.'/views',
+    'runtimePath' => $backend.'/runtime',
+    'name'=>'WDTeam Backend',
+    'language'=>'zh_cn',
+    'defaultController'=>'options',
+     // preloading 'log' component
+    'preload'=>array(
+        'log',
+        'bootstrap'
+      ),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -58,6 +62,12 @@ return array(
             'loginUrl'=>array('users/login'),
 			'allowAutoLogin'=>true,
 		),
+        'request'=>array(
+        	//CSRF防范
+            'enableCsrfValidation'=>true,
+            // Cookie攻击的防范
+            'enableCookieValidation'=>true,
+        ),
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(

@@ -11,12 +11,10 @@
 
 	<?php echo $form->textFieldRow($model,'autoload',array('class'=>'span5','maxlength'=>32)); ?>
 
-	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType' => 'submit',
 			'type'=>'primary',
 			'label'=>'Search',
 		)); ?>
-	</div>
 
 <?php $this->endWidget(); ?>

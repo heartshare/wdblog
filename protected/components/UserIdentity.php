@@ -28,6 +28,7 @@ class UserIdentity extends CUserIdentity
 		    $this->_id=$user->id;
             $this->setState('username', $user->username);
             $this->setState('nickname', $user->nickname);
+            $this->setState('role', $user->role);
             $user->saveCounters(array('counts'=>1));
 			$this->errorCode=self::ERROR_NONE;
 		}

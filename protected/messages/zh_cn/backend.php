@@ -69,6 +69,7 @@ return array (
   'Manage Widgets' => '扩展管理',  
   //其它
   'Password' => '密码',
-  'My Detail' => '我的资料',
+  'View my profile' => '查看我的主页',
+  'Edit account settings'=>'编辑账户设置',
   
 );

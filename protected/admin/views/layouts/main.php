@@ -14,7 +14,7 @@
 		<?php $this->widget('bootstrap.widgets.TbNavbar', array(
             'type'=>'inverse', // null or 'inverse'
             'brand'=>  CHtml::encode(Yii::app()->name),
-            'brandUrl'=>'#',
+            'brandUrl'=>Yii::app()->homeUrl,
             'collapse'=>true, // requires bootstrap-responsive.css
             'items'=>array(
                 array(
@@ -32,12 +32,12 @@
                     'class'=>'bootstrap.widgets.TbMenu',
                     'htmlOptions'=>array('class'=>'pull-right'),
                     'items'=>array(
-                        array('label'=>Yii::app()->user->name, 'url'=>array('users/view','id'=>Yii::app()->user->id), 
+                        array('label'=>Yii::app()->user->nickname, 'url'=>array('users/view','id'=>Yii::app()->user->id), 
 							'items'=>array(
-			                    array('label'=>Yii::t('backend', 'My Detail'), 'url'=>array('users/view','id'=>Yii::app()->user->id)),
-			                    array('label'=>Yii::t('backend', 'Update').Yii::t('backend', 'Password'), 'url'=>array('users/update','id'=>Yii::app()->user->id)),
+			                    array('label'=>Yii::t('backend', 'View my profile'), 'url'=>array('users/view','id'=>Yii::app()->user->id)),
+			                    array('label'=>Yii::t('backend', 'Edit account settings'), 'url'=>array('users/update','id'=>Yii::app()->user->id)),
 			                    '---',
-			                    array('label'=>Yii::t('backend', 'Logout'), 'url'=>array('site/logout')),
+			                    array('label'=>Yii::t('backend', 'Logout'), 'url'=>array('users/logout')),
 		                )),
                     ),
                 ),

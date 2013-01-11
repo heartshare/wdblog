@@ -32,11 +32,12 @@ class UsersController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('index','view','create','update','logout'),
-				'users'=>array('@'),
+                'users'=>array('@'),
+                'expression'=>'Yii::app()->user->role === "admin"',
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+                'expression'=>'Yii::app()->user->role === "admin"',
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -156,7 +157,6 @@ class UsersController extends Controller
 		$this->layout='//layouts/main_1';
        
 		$model=new LoginForm;
-
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
 		{

@@ -30,7 +30,8 @@ class Terms extends CWidget
          
             //注意widget的视图是放在跟widgets同级的views目录下面，例如下面的视图会放置在
             $this->render('terms', array(
-                'data'=>$this->data[$this->type],
+                'data'=>$this->data,
+                'type'=>$this->type,
             ));
         }
 

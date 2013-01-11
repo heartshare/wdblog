@@ -17,9 +17,9 @@ $this->breadcrumbs=array(
         <?php $this->beginWidget('application.widgets.Terms.Terms',array(
             'id'=>$model->id,
             'type'=>'posts',
-        ));
-        $this->endWidget();
-        ?>
+        ));?>
+        
+        <?php $this->endWidget();?>
         <i class="icon-eye-open"></i><?php echo $model->read_count, Yii::t('frontend', 'Views'); ?>
         <i class="icon-comment"></i><?php echo $model->commentCount, Yii::t('frontend', 'Comments');?>
         <?php if(!Yii::app()->user->isGuest && (Yii::app()->user->id == $model->user_id)): ?>
