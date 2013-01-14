@@ -5,13 +5,13 @@
     <div class="author">
         <i class="icon-user"></i><?php echo $data->author->username;?> <i class="icon-calendar"></i><?php echo $data->created; ?>
         
-        <i class="icon-th-list"></i>
+        
         <?php $this->beginWidget('application.widgets.Terms.Terms',array(
             'id'=>$data->id,
             'type'=>'posts',
-        ));
-        $this->endWidget();
-        ?>
+        ));?>
+        <i class="icon-th-list"></i>
+       <?php $this->endWidget(); ?>
         <i class="icon-eye-open"></i><?php echo $data->read_count, Yii::t('frontend', 'Views'); ?>
         <i class="icon-comment"></i><?php echo $data->commentCount, Yii::t('frontend', 'Comments');?>
         <?php if(!Yii::app()->user->isGuest && (Yii::app()->user->id == $data->user_id)): ?>

@@ -15,12 +15,17 @@
  * @property string $author_url
  * @property string $author_ip
  * @property string $content
+ * @property string $other_details
+ * @property string $created
+ * @property string $updated
  */
 class Comments extends CActiveRecord
 {
-    const STATUS_PENDING=1;
-	const STATUS_APPROVED=2;
-	/**
+    const STATUS_DRAFT = 1;
+    const STATUS_PENDING=2;
+	const STATUS_APPROVED=3;
+
+    /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Comments the static model class
@@ -46,7 +51,7 @@ class Comments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('parent_id, post_id, status, author, author_email, author_ip, content', 'required'),
+			array('parent_id, post_id, status, author, author_email, author_ip, content, other_details, created, updated', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('parent_id, post_id, user_id', 'length', 'max'=>20),
 			array('type, author', 'length', 'max'=>64),
@@ -54,7 +59,7 @@ class Comments extends CActiveRecord
 			array('author_ip', 'length', 'max'=>86),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, parent_id, post_id, user_id, status, type, author, author_email, author_url, author_ip, content', 'safe', 'on'=>'search'),
+			array('id, parent_id, post_id, user_id, status, type, author, author_email, author_url, author_ip, content, other_details, created, updated', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -86,6 +91,9 @@ class Comments extends CActiveRecord
 			'author_url' => 'Author Url',
 			'author_ip' => 'Author Ip',
 			'content' => 'Content',
+			'other_details' => 'Other Details',
+			'created' => 'Created',
+			'updated' => 'Updated',
 		);
 	}
 
@@ -111,6 +119,9 @@ class Comments extends CActiveRecord
 		$criteria->compare('author_url',$this->author_url,true);
 		$criteria->compare('author_ip',$this->author_ip,true);
 		$criteria->compare('content',$this->content,true);
+		$criteria->compare('other_details',$this->other_details,true);
+		$criteria->compare('created',$this->created,true);
+		$criteria->compare('updated',$this->updated,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

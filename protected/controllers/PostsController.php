@@ -73,16 +73,14 @@ class PostsController extends Controller
         $tags = '';
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
-        
+       
 		if(isset($_POST['Posts']))
 		{
-           
 			$model->attributes=$_POST['Posts'];
 			if($model->save())
             {
                 //添加 keywords and description
                 Meta::addMeta($model->id, 'posts', '_seo_post_meta', $_POST['SeoForm']);
-                
                 //添加分类
                 if(!empty($_POST['TermRelationships']['term_id']))
                 {
@@ -91,7 +89,6 @@ class PostsController extends Controller
                         TermRelationships::addTerm($model->id, $value);
                     }
                 }
-                
                 $this->redirect(array('view','id'=>$model->id));
             }
 				
@@ -185,13 +182,13 @@ class PostsController extends Controller
 	public function actionIndex()
 	{
         $criteria = new CDbCriteria();
-		$criteria->compare('post_status',3);
+		$criteria->compare('post_status', Posts::STATUS_PUBLISHED);
 		$criteria->order = 'created DESC';
 		
 		$dataProvider = new CActiveDataProvider('Posts',array(
 				'criteria'=>$criteria,
 				'pagination'=>array(
-						'pageSize'=>2,
+						'pageSize'=>Yii::app()->params['pageSize'],
 				),
 		));
         

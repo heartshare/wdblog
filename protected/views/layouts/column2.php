@@ -33,6 +33,12 @@
         <?php endif; ?>
     </ul>
 	<?php $this->endWidget(); ?>
+    <?php
+		$this->beginWidget('application.widgets.Tags.Tags', array(
+			'title'=>Yii::t('frontend', 'Tags Portlet'),
+		));
+    ?>
+      <?php $this->endWidget(); ?>
     </div><!-- sidebar -->
 </div>
 </div>  

@@ -36,7 +36,6 @@ class TermRelationships extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('object_id, term_id', 'required'),
 			array('object_id, term_id', 'length', 'max'=>20),
 			array('term_order', 'length', 'max'=>11),
 			// The following rule is used by search().
@@ -78,11 +77,11 @@ class TermRelationships extends CActiveRecord
             return true;
         }
     }
-    
-    public static function editTerm($id,$object_id,$term_id)
-    {
-      
-    }
+//    
+//    public static function editTerm($id,$object_id,$term_id)
+//    {
+//      
+//    }
 
     public static function getTerms($object_id,$type=null)
     {

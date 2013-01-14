@@ -82,7 +82,7 @@ class Terms extends CActiveRecord
     
     /**
      * Returns the items for the specified type.
-     * @param string the item type (e.g. 'post', 'tag').
+     * @param string the item type (e.g. 'posts', 'tags').
      * @return type 
      */
     public static function items($type)
@@ -126,6 +126,35 @@ class Terms extends CActiveRecord
         }
 		
     }
+
+    /**
+	 * Returns tag names and their corresponding weights.
+	 * Only the tags with the top weights will be returned.
+	 * @param integer the maximum number of tags that should be returned
+	 * @return array weights indexed by tag names.
+	 */
+	public static function findTagWeights($limit=20)
+	{
+		$models= Terms::model()->findAll(array(
+				'order'=>'count DESC',
+				'limit'=>$limit,
+		));
+		$total=0;
+		foreach($models as $model)
+        {
+          $total+=$model->count;
+        }
+		
+
+		$tags=array();
+		if($total>0)
+		{
+			foreach($models as $model)
+				$tags[$model->name]=8+(int)(16*$model->count/($total+10));
+			ksort($tags);
+		}
+		return $tags;
+	}
 
     /**
 	 * Retrieves a list of models based on the current search/filter conditions.

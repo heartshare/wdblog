@@ -58,6 +58,7 @@ return array (
     'Categories'=>'文章分类',
     'Edit'=>'编辑',
     'Views'=>'阅读数',
+    'ID' => '序号',
     
     //Comments
     'Ping' => '评分',

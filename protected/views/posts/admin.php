@@ -5,8 +5,6 @@ $this->breadcrumbs=array(
 );
 ?>
 
-
-
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'posts-grid',
 	'dataProvider'=>$model->search(),

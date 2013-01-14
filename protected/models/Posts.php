@@ -26,6 +26,11 @@
  */
 class Posts extends CActiveRecord
 {
+    const STATUS_PENDING = 1;
+    const STATUS_DRAFT = 2;
+    const STATUS_PUBLISHED = 3;
+    const STATUS_TOP = 4;
+    const STATUS_TRASH = 5;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -85,7 +90,7 @@ class Posts extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id' => Yii::t('frontend', 'ID'),
 			'user_id' =>Yii::t('frontend', 'Users'),
 			'title' => Yii::t('frontend', 'Title'),
 			'excerpt' => Yii::t('frontend', 'Excerpt'),
