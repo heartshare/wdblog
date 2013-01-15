@@ -9,7 +9,7 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-
+    <link rel="shortcut icon" type=image/x-icon href="favicon.ico">
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 

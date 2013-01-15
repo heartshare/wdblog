@@ -6,7 +6,7 @@
         <i class="icon-user"></i><?php echo $data->author->username;?> <i class="icon-calendar"></i><?php echo $data->created; ?>
         
         
-        <?php $this->beginWidget('application.widgets.Terms.Terms',array(
+        <?php $this->beginWidget('application.widgets.Terms.TermsWidget',array(
             'id'=>$data->id,
             'type'=>'posts',
         ));?>
@@ -27,7 +27,7 @@
     </div>
     <div class="tags">
 		<i class="icon-tags"></i><b>Tags:</b>
-		<?php $this->widget('application.widgets.Terms.Terms',array(
+		<?php $this->widget('application.widgets.Terms.TermsWidget',array(
             'id'=>$data->id,
             'type'=>'tags',
         ));

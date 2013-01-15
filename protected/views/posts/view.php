@@ -14,7 +14,7 @@ $this->breadcrumbs=array(
         <i class="icon-user"></i><?php echo $model->author->username;?> <i class="icon-calendar"></i><?php echo $model->created; ?>
         
         <i class="icon-th-list"></i>
-        <?php $this->beginWidget('application.widgets.Terms.Terms',array(
+        <?php $this->beginWidget('application.widgets.Terms.TermsWidget',array(
             'id'=>$model->id,
             'type'=>'posts',
         ));?>
@@ -34,7 +34,7 @@ $this->breadcrumbs=array(
     </div>
     <div class="tags">
 		<i class="icon-tags"></i><b>Tags:</b>
-		<?php $this->widget('application.widgets.Terms.Terms',array(
+		<?php $this->widget('application.widgets.Terms.TermsWidget',array(
             'id'=>$model->id,
             'type'=>'tags',
         ));

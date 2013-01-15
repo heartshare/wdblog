@@ -112,19 +112,6 @@ class Posts extends CActiveRecord
 		);
 	}
     
-    /**
-     * @return array  MonthlyArchives
-     */
-    public function findArchives()
-	{
-		return $this->findAll(array(
-                'select'=>'YEAR(FROM_UNIXTIME(created)) AS `year`, MONTH(FROM_UNIXTIME(created)) AS `month`, count(id) as posts',
-                'condition'=>'t.status='.self::STATUS_PUBLISHED,
-                'group'=>'YEAR(FROM_UNIXTIME(created)), MONTH(FROM_UNIXTIME(created))',
-				'order'=>'t.created DESC',
-		));
-	}
-	
 	/**
 	 * @return string the URL that shows the detail of the post
 	 */

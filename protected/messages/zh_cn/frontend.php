@@ -63,6 +63,11 @@ return array (
     //Comments
     'Ping' => '评分',
     'Comments' => '评论',
+    // Tags
+    'Tag Cloud'=>'标签云',
+    //Category
+    'Categories'=>'分类',
+    'Monthly Archives'=>'文章归档',
     
     //其它
     'Contact Us' => '联系我们',

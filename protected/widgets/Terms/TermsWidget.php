@@ -1,5 +1,5 @@
 <?php
-class Terms extends CWidget
+class TermsWidget extends CWidget
 {
     public $id='';
     public $type = 'posts';

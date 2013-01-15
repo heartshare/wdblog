@@ -34,11 +34,27 @@
     </ul>
 	<?php $this->endWidget(); ?>
     <?php
-		$this->beginWidget('application.widgets.Tags.Tags', array(
-			'title'=>Yii::t('frontend', 'Tags Portlet'),
-		));
+        $this->beginWidget('application.widgets.TagsCloud.TagsCloudWidget', array(
+            'title'=>Yii::t('frontend', 'Tag Cloud'),
+            'route'=>'posts/index',
+        ));
     ?>
-      <?php $this->endWidget(); ?>
+    <?php $this->endWidget(); ?>
+    <?php
+        $this->beginWidget('application.widgets.Category.CategoryWidget', array(
+            'title'=>Yii::t('frontend', 'Categories'),
+            'route'=>'posts/index',
+            'limit'=>20,
+        ));
+    ?>
+    <?php $this->endWidget(); ?>
+    <?php
+        $this->beginWidget('application.widgets.MonthlyArchives.MonthlyArchivesWidget', array(
+            'title'=>Yii::t('frontend', 'Monthly Archives'),
+            'route'=>'posts/index',
+        ));
+    ?>
+    <?php $this->endWidget(); ?>
     </div><!-- sidebar -->
 </div>
 </div>  
