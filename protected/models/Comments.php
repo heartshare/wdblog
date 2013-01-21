@@ -21,9 +21,8 @@
  */
 class Comments extends CActiveRecord
 {
-    const STATUS_DRAFT = 1;
-    const STATUS_PENDING=2;
-	const STATUS_APPROVED=3;
+    const STATUS_PENDING=1;
+	const STATUS_APPROVED=2;
 
     /**
 	 * Returns the static model of the specified AR class.
@@ -71,6 +70,7 @@ class Comments extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'posts' => array(self::BELONGS_TO, 'Posts', 'post_id'),
 		);
 	}
 
@@ -97,6 +97,55 @@ class Comments extends CActiveRecord
 		);
 	}
 
+    /**
+	 * @param Post the post that this comment belongs to. If null, the method
+	 * will query for the post.
+	 * @return string the permalink URL for this comment
+	 */
+	public function getUrl($post=null)
+	{
+		if($post===null)
+			$post=$this->posts;
+		return $post->url.'#c'.$this->id;
+	}
+
+    /**
+	 * @return string the hyperlink display for the current comment's author
+	 */
+	public function getAuthorLink()
+	{
+		if(!empty($this->author_url))
+			return CHtml::link(CHtml::encode($this->author),$this->author_url,array('target'=>'_blank'));
+		else
+			return CHtml::encode($this->author);
+	}
+
+	/**
+	 * @return integer the number of comments that are pending approval
+	 */
+	public function getPendingCommentCount()
+	{
+		return $this->count('status='.self::STATUS_PENDING);
+	}
+    
+    /**
+	 * This is invoked before the record is saved.
+	 * @return boolean whether the record should be saved.
+	 */
+	protected function beforeSave()
+	{
+		if(parent::beforeSave())
+		{
+			if($this->isNewRecord)
+				$this->created=date('Y-m-d H:i:s');
+				$this->author_ip = Yii::app()->request->userHostAddress;  
+			return true;
+		}
+		else
+			return false;
+	}
+    
+    
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.

@@ -59,10 +59,13 @@ return array (
     'Edit'=>'编辑',
     'Views'=>'阅读数',
     'ID' => '序号',
+    'Recent Article'=>'最近文章',
+    'Hot Article'=>'热点文章',
     
     //Comments
     'Ping' => '评分',
     'Comments' => '评论',
+    'Recent Comments'=>'最近评论',
     // Tags
     'Tag Cloud'=>'标签云',
     //Category

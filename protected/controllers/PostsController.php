@@ -56,8 +56,11 @@ class PostsController extends Controller
             }
         }
         Posts::model()->updateCounters(array('read_count'=>1)); //更新阅读数
+        $posts=$this->loadModel($id);
+		$comment=$this->newComments($posts);
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$posts,
+            'comment'=>$comment,
 		));
 	}
 
@@ -236,5 +239,34 @@ class PostsController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+    
+    /**
+	 * Creates a new Comments.
+	 * This method attempts to create a new Comments based on the user input.
+	 * If the Comments is successfully created, the browser will be redirected
+	 * to show the created comment.
+	 * @param Post the post that the new comment belongs to
+	 * @return Comments the comment instance
+	 */
+	protected function newComments($post)
+	{
+		$comment=new Comments;
+		if(isset($_POST['ajax']) && $_POST['ajax']==='comment-form')
+		{
+			echo CActiveForm::validate($comment);
+			Yii::app()->end();
+		}
+		if(isset($_POST['Comment']))
+		{
+			$comment->attributes=$_POST['Comment'];
+			if($post->addComment($comment))
+			{
+				if($comment->status==Comment::STATUS_PENDING)
+					Yii::app()->user->setFlash('commentSubmitted','Thank you for your comment. Your comment will be posted once it is approved.');
+				$this->refresh();
+			}
+		}
+		return $comment;
 	}
 }

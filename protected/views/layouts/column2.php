@@ -34,14 +34,15 @@
     </ul>
 	<?php $this->endWidget(); ?>
     <?php
-        $this->beginWidget('application.widgets.TagsCloud.TagsCloudWidget', array(
+        $this->beginWidget('application.widgets.TagsCloudPortlet.TagsCloudWidget', array(
             'title'=>Yii::t('frontend', 'Tag Cloud'),
             'route'=>'posts/index',
+            'limit'=>50,
         ));
     ?>
     <?php $this->endWidget(); ?>
     <?php
-        $this->beginWidget('application.widgets.Category.CategoryWidget', array(
+        $this->beginWidget('application.widgets.CategoryPortlet.CategoryWidget', array(
             'title'=>Yii::t('frontend', 'Categories'),
             'route'=>'posts/index',
             'limit'=>20,
@@ -49,9 +50,32 @@
     ?>
     <?php $this->endWidget(); ?>
     <?php
-        $this->beginWidget('application.widgets.MonthlyArchives.MonthlyArchivesWidget', array(
+        $this->beginWidget('application.widgets.ArchivesPortlet.MonthlyArchivesWidget', array(
             'title'=>Yii::t('frontend', 'Monthly Archives'),
             'route'=>'posts/index',
+        ));
+    ?>
+    <?php $this->endWidget(); ?>
+    <?php
+        $this->beginWidget('application.widgets.ArticlePortlet.ArticleWidget', array(
+            'title'=>Yii::t('frontend', 'Hot Article'),
+            'type'=>'hot',
+            'route'=>'posts/view',
+        ));
+    ?>
+    <?php $this->endWidget(); ?>
+    <?php
+        $this->beginWidget('application.widgets.ArticlePortlet.ArticleWidget', array(
+            'title'=>Yii::t('frontend', 'Recent Article'),
+            'type'=>'recent',
+            'route'=>'posts/view',
+        ));
+    ?>
+    <?php $this->endWidget(); ?>
+    <?php
+        $this->beginWidget('application.widgets.CommentsPortlet.CommentsWidget', array(
+            'title'=>Yii::t('frontend', 'Recent Comments'),
+            'route'=>'posts/view',
         ));
     ?>
     <?php $this->endWidget(); ?>

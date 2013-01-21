@@ -14,7 +14,7 @@ $this->breadcrumbs=array(
         <i class="icon-user"></i><?php echo $model->author->username;?> <i class="icon-calendar"></i><?php echo $model->created; ?>
         
         <i class="icon-th-list"></i>
-        <?php $this->beginWidget('application.widgets.Terms.TermsWidget',array(
+        <?php $this->beginWidget('application.widgets.TermsWidget.TermsWidget',array(
             'id'=>$model->id,
             'type'=>'posts',
         ));?>
@@ -34,10 +34,39 @@ $this->breadcrumbs=array(
     </div>
     <div class="tags">
 		<i class="icon-tags"></i><b>Tags:</b>
-		<?php $this->widget('application.widgets.Terms.TermsWidget',array(
+		<?php $this->widget('application.widgets.TermsWidget.TermsWidget',array(
             'id'=>$model->id,
             'type'=>'tags',
         ));
         ?>
+        <br/>
+		<?php echo CHtml::link('Permalink', $model->url); ?> |
+		<?php echo CHtml::link("Comments ({$model->commentCount})",$model->url.'#comments'); ?> |
+		Last updated on <?php echo $model->updated; ?>
 	</div>
 </div>
+<div id="comments">
+	<?php if($model->commentCount>=1): ?>
+		<h3>
+			<?php echo $model->commentCount>1 ? $model->commentCount . ' comments' : 'One comment'; ?>
+		</h3>
+
+		<?php $this->renderPartial('_comments',array(
+			'post'=>$model,
+			'comments'=>$model->comments,
+		)); ?>
+	<?php endif; ?>
+
+	<h3>Leave a Comment</h3>
+
+	<?php if(Yii::app()->user->hasFlash('commentSubmitted')): ?>
+		<div class="flash-success">
+			<?php echo Yii::app()->user->getFlash('commentSubmitted'); ?>
+		</div>
+	<?php else: ?>
+		<?php $this->renderPartial('/comments/_form',array(
+			'model'=>$comment,
+		)); ?>
+	<?php endif; ?>
+
+</div><!-- comments -->

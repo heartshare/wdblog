@@ -6,7 +6,7 @@
         <i class="icon-user"></i><?php echo $data->author->username;?> <i class="icon-calendar"></i><?php echo $data->created; ?>
         
         
-        <?php $this->beginWidget('application.widgets.Terms.TermsWidget',array(
+        <?php $this->beginWidget('application.widgets.TermsWidget.TermsWidget',array(
             'id'=>$data->id,
             'type'=>'posts',
         ));?>
@@ -27,10 +27,14 @@
     </div>
     <div class="tags">
 		<i class="icon-tags"></i><b>Tags:</b>
-		<?php $this->widget('application.widgets.Terms.TermsWidget',array(
+		<?php $this->widget('application.widgets.TermsWidget.TermsWidget',array(
             'id'=>$data->id,
             'type'=>'tags',
         ));
         ?>
+        <br/>
+        <?php echo CHtml::link('Permalink', $data->url); ?> |
+		<?php echo CHtml::link("Comments ({$data->commentCount})",$data->url.'#comments'); ?> |
+		Last updated on <?php echo $data->updated; ?>
 	</div>
 </div>
