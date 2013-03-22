@@ -1,5 +1,5 @@
 <?php
-
+//我测试一下我有没有权限
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/yii/framework/yii.php';
 $config=dirname(__FILE__).'/protected/config/main.php';
